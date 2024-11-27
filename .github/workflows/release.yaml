@@ -31,7 +31,7 @@ jobs:
           pyinstaller --onefile spass.py  # Replace with your script name
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.os }}-binary
           path: dist/spass  # Adjust the path if necessary
