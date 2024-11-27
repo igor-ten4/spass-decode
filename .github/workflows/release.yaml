@@ -34,7 +34,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.os }}-binary
-          path: dist/spass  # Adjust the path if necessary
+          path: |
+            dist/spass${{ matrix.os == 'windows-latest' && '.exe' || '' }}
 
   release:
     runs-on: ubuntu-latest
@@ -44,19 +45,19 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Download artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: ubuntu-latest-binary
           path: ./binaries/linux
 
       - name: Download artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: macos-latest-binary
           path: ./binaries/macos
 
       - name: Download artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: windows-latest-binary
           path: ./binaries/windows
